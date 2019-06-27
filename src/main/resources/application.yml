@@ -1,0 +1,9 @@
+telegram:
+  bot:
+    name :
+    token :
+
+spring:
+  batch:
+    job:
+      enabled: false
