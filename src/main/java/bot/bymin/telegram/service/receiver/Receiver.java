@@ -34,7 +34,7 @@ public abstract class Receiver {
         } else {
             throw new NoneException();
         }
-        return "scouter";
+        return "screen";
     }
 
     public abstract boolean resolve(String text);

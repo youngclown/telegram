@@ -38,12 +38,12 @@ public class PlayBot extends TelegramLongPollingBot {
         // 앞자리가 "/" 일 경우에만 동작한다.
         if(text != null && text.startsWith("/")) {
             // Chain Of Responsibility
-            Receiver scouterReceiver = new ScreenReceiver(update);
+            Receiver screenReceiver = new ScreenReceiver(update);
             Receiver propertiesReceiver = new PropertiesReceiver(update);
-            scouterReceiver.setNext(propertiesReceiver);
+            screenReceiver.setNext(propertiesReceiver);
             try {
-                String type = scouterReceiver.support(text);
-                Object result = type.equals("scouter") ? scouterReceiver.getResult() : propertiesReceiver.getResult();
+                String type = screenReceiver.support(text);
+                Object result = type.equals("screen") ? screenReceiver.getResult() : propertiesReceiver.getResult();
 
                 if (result instanceof InputStream) {
                     SendPhoto sendPhotoRequest = new SendPhoto();sendPhotoRequest.setChatId(update.getMessage().getChatId());
@@ -58,7 +58,7 @@ public class PlayBot extends TelegramLongPollingBot {
             } catch (NoneException e) {
                 SendMessage message = new SendMessage();
                 message.setChatId(update.getMessage().getChatId());
-                message.setText("~~ 호출하면 됩니다.");
+                message.setText("잘못된 명령어입니다.");
                 try {
                     execute(message);
                 } catch (TelegramApiException e1) {
