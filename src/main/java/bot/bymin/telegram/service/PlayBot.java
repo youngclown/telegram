@@ -1,5 +1,6 @@
 package bot.bymin.telegram.service;
 
+import bot.bymin.telegram.config.TelegramConfig;
 import bot.bymin.telegram.service.exception.NoneException;
 import bot.bymin.telegram.service.receiver.ScreenReceiver;
 import bot.bymin.telegram.service.receiver.Receiver;
@@ -18,9 +19,9 @@ public class PlayBot extends TelegramLongPollingBot {
     String token;
 
 
-    public PlayBot(String name, String token) {
-        this.name = name;
-        this.token = token;
+    public PlayBot(TelegramConfig config) {
+        this.name = config.getTelegramBotName();
+        this.token = config.getTelegramBotToken();
     }
 
 

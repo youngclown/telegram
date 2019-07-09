@@ -27,7 +27,7 @@ public class TelegramApplication implements CommandLineRunner {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 
         try {
-            PlayBot playBot = new PlayBot(config.getTelegramBotName(), config.getTelegramBotToken());
+            PlayBot playBot = new PlayBot(config);
             telegramBotsApi.registerBot(playBot);
         } catch (TelegramApiException e) {
             e.printStackTrace();
